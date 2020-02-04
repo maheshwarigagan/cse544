@@ -34,7 +34,9 @@ def experiment(n=4, p=0.5, size=pow(10, 2), target=2):
 #     count, prob = experiment(n=7, size=pow(10, x), target=4)
 #     print("For n = ", x, "No Of Draws = ", count, "Probability = ", prob)
 
-# Part e
-# for x in range(3, 8):
-#     count, prob = experiment(n=7, size=pow(10, x), target=4)
-#     print("For n = ", x, "No Of Draws = ", count, "Probability = ", prob)
+
+# TODO: Part e Since the probability is changing again and again we need to just figure out the probability of each individual
+# game and run a simulation
+for x in range(3, 8):
+    count, prob = experiment(n=7, size=pow(10, x), target=4)
+    print("For n = ", x, "No Of Draws = ", count, "Probability = ", prob)
