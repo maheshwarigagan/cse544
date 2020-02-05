@@ -11,7 +11,7 @@ import numpy as np
 
 # (n, N) = (20, pow(10, 2))
 # (n, N) = (20, pow(10, 3))
-# (n, N) = (20, pow(10, 4))
+(n, N) = (20, pow(10, 4))
 # (n, N) = (20, pow(10, 5))
 
 favorable_outcomes = 0
