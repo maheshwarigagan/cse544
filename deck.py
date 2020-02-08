@@ -1,9 +1,9 @@
 import math
 import numpy as np
 
-#README: Uncomment any testcase and run the file to execute the simulation.
+# README: Uncomment any testcase and run the file to execute the simulation.
 
-# (n, N) = (5, pow(10, 2))
+(n, N) = (5, pow(10, 2))
 # (n, N) = (5, pow(10, 3))
 # (n, N) = (5, pow(10, 4))
 # (n, N) = (5, pow(10, 5))
@@ -11,7 +11,7 @@ import numpy as np
 
 # (n, N) = (20, pow(10, 2))
 # (n, N) = (20, pow(10, 3))
-(n, N) = (20, pow(10, 4))
+# (n, N) = (20, pow(10, 4))
 # (n, N) = (20, pow(10, 5))
 
 favorable_outcomes = 0
