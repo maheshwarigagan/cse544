@@ -1,7 +1,7 @@
 import numpy as np
 from operator import add
 
-np.random.seed(640)
+np.random.seed(960)
 
 # README: Main function at the bottom of the file; Change the value for n to get other results.
 # README: Call main function multiple times to view results together.
@@ -46,12 +46,38 @@ def custom_probability(events, event):
 
 
 # Complex experiment
-def complex_experiment(size=10, target=2):
-    val1 = np.random.binomial(n=1, p=0.75, size=size)
-    val2 = np.random.binomial(n=1, p=0.25, size=size)
-    val = map(add, val1, val2)
-    result = list(val)
-    return custom_probability(result, 1)
+def complex_experiment(size=10):
+    # Simulating the first game of the series and then moving on with the rest of the games
+    # As given in Piazza post 30 we need to assume that the first two games were held in toroto
+    # And the next two games were held in philli
+    # TOR home games
+    game1 = np.random.binomial(n=1, p=0.75, size=size)
+    game2 = np.random.binomial(n=1, p=0.75, size=size)
+
+    # Philli Home games
+    game3 = np.random.binomial(n=1, p=0.25, size=size)
+    game4 = np.random.binomial(n=1, p=0.25, size=size)
+
+    values_after_4_games = list(map(add, map(add, map(add, game1, game2), game3), game4))
+    no_of_draws = list(values_after_4_games).count(2)
+    # print(no_of_draws)
+    # We only need the games in which the value is exactly 2. Those are the games which were tied.
+    game5 = np.random.binomial(n=1, p=0.75, size=no_of_draws)
+    game6 = np.random.binomial(n=1, p=0.25, size=no_of_draws)
+
+    # Once again we just need to look at the values where the games were tied 3-3 in the season which
+    # is the score of 1 in case of the sum of game 5 and game 6 score
+    score_after_game_5_and_6 = map(add, game5, game6)
+    no_of_draws_after_game_6 = list(score_after_game_5_and_6).count(1)
+    # print(no_of_draws_after_game_6)
+
+    game7 = np.random.binomial(n=1, p=0.75, size=no_of_draws_after_game_6)
+    no_of_cases_where_tor_won = list(game7).count(1)
+    # print(no_of_cases_where_tor_won)
+    return no_of_cases_where_tor_won / no_of_draws
+
+
+print(complex_experiment(size=pow(10, 6)))
 
 
 def main(N=3):
@@ -66,19 +92,21 @@ def main(N=3):
     # for x in range(3, 8):
     count, prob = experiment(n=4, size=pow(10, N), target=2)
     print("For N = ", N, ", the simulated value for part (c) is ", prob)
-
-    #     print("For n = ", x, "No Of Draws = ", count, "Probability = ", prob)
+    #
+    # #     print("For n = ", x, "No Of Draws = ", count, "Probability = ", prob)
 
     print("")
     # game and run a simulation
     # for x in range(3, 8):
-    tor_win, tie_count, prob = complex_experiment(size=pow(10, N), target=2)
+    prob = complex_experiment(size=pow(10, N))
     print("For N = ", N, ", the simulated value for part (e) is ", prob)
     # print("For n = ", x, "No Of favorable outcomes = ", tor_win, "Total no of ties after 4 games = ",
     #       tie_count, "Probability = ", prob)
 
 
-# main(N=n)
+#
+#
+# # main(N=n)
 main(N=3)
 print("--")
 main(N=4)
