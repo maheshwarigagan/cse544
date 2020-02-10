@@ -5,13 +5,7 @@ np.random.seed(960)
 
 # README: Main function at the bottom of the file; Change the value for n to get other results.
 # README: Call main function multiple times to view results together.
-# n = 3
 n = 4
-
-
-# n=5
-# n=6
-# n=7
 
 # Fair 4 games probability
 def probability(events, event):
@@ -77,35 +71,33 @@ def complex_experiment(size=10):
     return no_of_cases_where_tor_won / no_of_draws
 
 
-print(complex_experiment(size=pow(10, 6)))
+def experiment_c(N):
+    count = list(np.random.binomial(n=4, p=0.5, size=pow(10, N))).count(
+        2)  # prob = experiment(n=4, size=pow(10, N), target=2)
+    games = np.random.binomial(n=2, p=0.5, size=count)
+    draws_after_33 = list(games).count(1)
+    final_result = np.random.binomial(n=1, p=0.5, size=draws_after_33)
+    final_4_3_wins = list(final_result).count(1)
+    prob = final_4_3_wins / count
+    return prob
 
 
 def main(N=3):
-    # Part (a)
-    # for n in range(3, 8):
+    # Part(a)
     count, prob = experiment(size=pow(10, N))
     print("For N = ", N, ", the simulated value for part (a) is ", prob)
-    # print("For n = ", n, "No Of Draws = ", count, "Probability = ", prob)
 
     print("")
-    # Part(c) The target is now 4 and total number of instances are 7
-    # for x in range(3, 8):
-    count, prob = experiment(n=4, size=pow(10, N), target=2)
+    # Part(c)
+    prob = experiment_c(N)
     print("For N = ", N, ", the simulated value for part (c) is ", prob)
-    #
-    # #     print("For n = ", x, "No Of Draws = ", count, "Probability = ", prob)
 
     print("")
-    # game and run a simulation
-    # for x in range(3, 8):
+    # Part(d)
     prob = complex_experiment(size=pow(10, N))
     print("For N = ", N, ", the simulated value for part (e) is ", prob)
-    # print("For n = ", x, "No Of favorable outcomes = ", tor_win, "Total no of ties after 4 games = ",
-    #       tie_count, "Probability = ", prob)
 
 
-#
-#
 # # main(N=n)
 main(N=3)
 print("--")
