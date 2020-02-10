@@ -7,6 +7,7 @@ np.random.seed(960)
 # README: Call main function multiple times to view results together.
 n = 4
 
+
 # Fair 4 games probability
 def probability(events, event):
     count = 0
@@ -72,12 +73,14 @@ def complex_experiment(size=10):
 
 
 def experiment_c(N):
+    # First 4 games only look for 2-2 score
     count = list(np.random.binomial(n=4, p=0.5, size=pow(10, N))).count(
-        2)  # prob = experiment(n=4, size=pow(10, N), target=2)
-    games = np.random.binomial(n=2, p=0.5, size=count)
-    draws_after_33 = list(games).count(1)
-    final_result = np.random.binomial(n=1, p=0.5, size=draws_after_33)
-    final_4_3_wins = list(final_result).count(1)
+        2)
+    # Next two games only look for 1-1 draw in the next two
+    draws_after_33 = list(np.random.binomial(n=2, p=0.5, size=count)).count(1)
+
+    # finally look for TOR win.
+    final_4_3_wins = list(np.random.binomial(n=1, p=0.5, size=draws_after_33)).count(1)
     prob = final_4_3_wins / count
     return prob
 
