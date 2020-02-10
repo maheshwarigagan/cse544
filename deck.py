@@ -28,5 +28,5 @@ for i in range(1, N):
         favorable_outcomes += 1
 
 probability = favorable_outcomes / N
-print("Favorable outcomes: ", favorable_outcomes, ", Total number of outcomes: ", N)
-print("For (n, N) = (", n, ",", N, ") the probability is ", probability)
+# print("Favorable outcomes: ", favorable_outcomes, ", Total number of outcomes: ", N)
+print("For (n, N) = (", n, ",", N, ") the approximated value for probability is ", probability)
