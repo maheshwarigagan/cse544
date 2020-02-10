@@ -5,7 +5,7 @@ np.random.seed(960)
 
 # README: Main function at the bottom of the file; Change the value for n to get other results.
 # README: Call main function multiple times to view results together.
-n = 4
+n = 6
 
 
 # Fair 4 games probability
@@ -101,13 +101,5 @@ def main(N=3):
     print("For N = ", N, ", the simulated value for part (e) is ", prob)
 
 
-# # main(N=n)
-main(N=3)
-print("--")
-main(N=4)
-print("--")
-main(N=5)
-print("--")
-main(N=6)
-print("--")
-main(N=7)
+
+main(N=n)
