@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-# README: Uncomment any testcase and run the file to execute the simulation.
+# README: Uncomment any test-case and run the file to execute the simulation.
 
 (n, N) = (5, pow(10, 2))
 # (n, N) = (5, pow(10, 3))
