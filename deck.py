@@ -21,7 +21,7 @@ for i in range(1, N):
 
     keep = 0
     for index, val in enumerate(iPhone_list):
-        if index == val:
+        if (index+1) == val:
             keep += 1
 
     if keep > 0:
