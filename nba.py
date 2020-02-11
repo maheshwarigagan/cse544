@@ -5,7 +5,7 @@ np.random.seed(960)
 
 # README: Main function at the bottom of the file; Change the value for n to get other results.
 # README: Call main function multiple times to view results together.
-n = 6
+N = 7
 
 
 # Fair 4 games probability
@@ -20,7 +20,7 @@ def probability(events, event):
 
 
 # Default values are fair game value of n is 4 and the size of the experiment is 100
-def experiment(n=4, p=0.5, size=pow(10, 2), target=2):
+def experiment_a(n=4, p=0.5, size=pow(10, 2), target=2):
     val = np.random.binomial(n=n, p=p, size=size)
     return probability(val, target)
 
@@ -41,7 +41,7 @@ def custom_probability(events, event):
 
 
 # Complex experiment
-def complex_experiment(size=10):
+def experiment_e(size):
     # Simulating the first game of the series and then moving on with the rest of the games
     # As given in Piazza post 30 we need to assume that the first two games were held in toroto
     # And the next two games were held in philli
@@ -72,9 +72,9 @@ def complex_experiment(size=10):
     return no_of_cases_where_tor_won / no_of_draws
 
 
-def experiment_c(N):
+def experiment_c(size):
     # First 4 games only look for 2-2 score
-    count = list(np.random.binomial(n=4, p=0.5, size=pow(10, N))).count(
+    count = list(np.random.binomial(n=4, p=0.5, size=size)).count(
         2)
     # Next two games only look for 1-1 draw in the next two
     draws_after_33 = list(np.random.binomial(n=2, p=0.5, size=count)).count(1)
@@ -85,21 +85,18 @@ def experiment_c(N):
     return prob
 
 
-def main(N=3):
+
+if __name__ == '__main__':
     # Part(a)
-    count, prob = experiment(size=pow(10, N))
+    count, prob = experiment_a(size=pow(10, N))
     print("For N = ", N, ", the simulated value for part (a) is ", prob)
 
     print("")
     # Part(c)
-    prob = experiment_c(N)
+    prob = experiment_c(size=pow(10,N))
     print("For N = ", N, ", the simulated value for part (c) is ", prob)
 
     print("")
     # Part(d)
-    prob = complex_experiment(size=pow(10, N))
+    prob = experiment_e(size=pow(10, N))
     print("For N = ", N, ", the simulated value for part (e) is ", prob)
-
-
-
-main(N=n)
