@@ -25,20 +25,6 @@ def experiment_a(n=4, p=0.5, size=pow(10, 2), target=2):
     return probability(val, target)
 
 
-def custom_probability(events, event):
-    # N_a
-    tie_count = 0
-    # N_ba
-    tor_win = 0
-    for ele in events:
-        if ele == event:
-            tie_count += 1
-            val = np.random.binomial(n=1, p=0.75)
-            if val == 1:
-                tor_win += 1
-                # Prob(B|A) = N_ba/N_a
-    return tor_win, tie_count, tor_win / tie_count
-
 
 # Complex experiment
 def experiment_e(size):
