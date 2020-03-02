@@ -19,6 +19,7 @@ def create_dataset():
             x = np.random.normal(9, 1)
         data.append(x)
 
+    print(data)
     return data
 
 
@@ -49,7 +50,7 @@ def part_a():
         v = kde_estimates(data, hi)
         kdes.append(v)
     fig, ax = plt.subplots(1, 1)
-    ax.plot(alphas, norm.pdf(alphas), 'r-', lw=5, alpha=0.6, label='True')
+    ax.plot(alphas, get_alpha_distribution(alphas), 'r-', lw=5, alpha=0.6, label='True')
     ax.plot(alphas, kdes[0], 'g-', lw=5, alpha=0.6, label='h=0.1')
     ax.plot(alphas, kdes[1], 'b-', lw=5, alpha=0.6, label='h=1')
     ax.plot(alphas, kdes[2], 'y-', lw=5, alpha=0.6, label='h=7')
@@ -58,11 +59,27 @@ def part_a():
     plt.show()
 
 
+def get_alpha_distribution(alphas):
+    true_d = []
+    x_unif = np.random.uniform(0, 1, len(alphas))
+    for val, alp in zip(x_unif, alphas):
+        x = -1
+        if val <= 0.25:
+            x = norm.pdf(alp, 0, 1)
+        elif 0.25 < val <= 0.5:
+            x = norm.pdf(alp, 3, 1)
+        elif 0.5 < val <= 0.75:
+            x = norm.pdf(alp, 6, 1)
+        else:
+            x = norm.pdf(alp, 9, 1)
+        true_d.append(x)
+    return true_d
+
 def part_b():
     dataset = []
     h = [0.01, .1, .3, .6, 1, 3, 7]
     alphas = np.arange(-5, 10, 0.1)
-    true_d = norm.pdf(alphas)
+    true_d = get_alpha_distribution(alphas)
     bias2_tot = dict()
     variance_tot = dict()
     for i in range(0, 151):
