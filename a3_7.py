@@ -123,7 +123,7 @@ def part_b():
     plt.show()
     #b2
 
-    print("Optimal value for h is", np.argmax(np.array(y) + np.array(b)))
+    print("Optimal value for h is", np.argmin(np.array(y) + np.array(b)))
 
 
 if __name__ == '__main__':
