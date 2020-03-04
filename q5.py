@@ -30,6 +30,9 @@ def partc(showGraph = True):
     graph_data = [x / n for x in graph_data]
 
     if showGraph:
+        plt.title('histogram estimate')
+        plt.xlabel('x')
+        plt.ylabel('h[x]')
         plt.xticks(np.arange(lowest_bin,highest_bin,1))
         plt.yticks(np.arange(0, 1, 0.01))
         plt.bar(np.arange(lowest_bin,highest_bin,1),graph_data)
