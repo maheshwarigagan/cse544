@@ -41,7 +41,7 @@ def kde_estimates(data, h):
 
 # https://stackoverflow.com/questions/49106806/how-to-do-a-simple-gaussian-mixture-sampling-and-pdf-plotting-with-numpy-scipy
 def gausian_mixture(alphas=np.zeros(800)):
-    n = 10000
+    n = len(alphas)
     np.random.seed(0x5eed)
     # Parameters of the mixture components
     norm_params = np.array([[0, 1],
