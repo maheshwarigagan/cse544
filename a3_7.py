@@ -5,38 +5,6 @@ from operator import add
 import scipy.stats as ss
 
 
-# https://stackoverflow.com/questions/47759577/creating-a-mixture-of-probability-distributions-for-sampling
-# Rational
-# Sampling
-# from a mixture
-#
-# of
-# distributions(where
-# PDFs
-# are
-# added
-# with some coefficients c_1, c_2, ...c_n) is equivalent to sampling each independently,
-# and then, for each index, picking the value from k-th sample, with probability c_k.
-def create_dataset_so():
-    distributions = [
-        {"type": np.random.normal, "kwargs": {"loc": 0, "scale": 1}},
-        {"type": np.random.normal, "kwargs": {"loc": 3, "scale": 1}},
-        {"type": np.random.normal, "kwargs": {"loc": 6, "scale": 1}},
-        {"type": np.random.normal, "kwargs": {"loc": 9, "scale": 1}},
-    ]
-    coefficients = np.array([0.25, 0.25, 0.25, 0.25])
-    coefficients /= coefficients.sum()  # in case these did not add up to 1
-    sample_size = 800
-
-    num_distr = len(distributions)
-    data = np.zeros((sample_size, num_distr))
-    for idx, distr in enumerate(distributions):
-        data[:, idx] = distr["type"](size=(sample_size,), **distr["kwargs"])
-    random_idx = np.random.choice(np.arange(num_distr), size=(sample_size,), p=coefficients)
-    sample = data[np.arange(sample_size), random_idx]
-    return sample
-
-
 def create_dataset():
     data = []
     x_unif = np.random.uniform(0, 1, 800)
@@ -165,14 +133,21 @@ def part_b():
     v.set_title("Variance vs h")
     print("Check figure")
     plt.show()
-    # b2
-    val = np.array(y) + np.array(b)
-    print("Optimal value for h is", np.argmin(val))
+    # dummy value
+    val = 10000000000000000
+    key = -1
+    for (k, v) in bias2_tot.items():
+        sum = v + variance_tot[k]
+        if sum < val:
+            val = sum
+            key = k
+
+    print("The Optimal value of h you should use is ", key)
 
 
 if __name__ == '__main__':
     plt.figure(figsize=(20, 10))
     print("Starting part A")
-    # part_a()
-    # print("Starting part B")
+    part_a()
+    print("Starting part B")
     part_b()
