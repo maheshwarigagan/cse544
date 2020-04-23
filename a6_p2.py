@@ -6,7 +6,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 from matplotlib.pyplot import figure
-figure(figsize=(20,20))
+
+figure(figsize=(20, 20))
+
 
 # returns (x, y^2) not y
 def calculate_posterior(data, a, b2, sigma):
@@ -34,16 +36,14 @@ def calculate_plot(dataframe, sigma=3, prior=(0, 1)):
     plt.show()
 
 
-
 if __name__ == '__main__':
     # read files
-    #Part A
+    # Part A
     print("Part A")
     sigma3 = pd.read_csv("q2_sigma3.dat", header=None)
     calculate_plot(sigma3)
 
-    #Part B
+    # Part B
     print("Part B")
     sigma100 = pd.read_csv("q2_sigma100.dat", header=None)
     calculate_plot(sigma100, sigma=100)
-
