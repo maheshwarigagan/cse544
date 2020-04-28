@@ -26,7 +26,7 @@ def calculate_plot(dataframe, sigma=3, prior=(0, 1)):
     mean_std_table = [prior]
     for index, values in dataframe.iterrows():
         posterior = calculate_posterior(values, prior[0], prior[1], sigma)
-        print("After iteration ", index, ",: Prior: ", prior, " posterior", posterior)
+        print("After iteration ", index, ": Prior: ", prior, " posterior", posterior)
         mean_std_table.append(posterior)
         prior = posterior
         x = np.linspace(prior[0] - 3 * math.sqrt(prior[1]), prior[0] + 3 * math.sqrt(prior[1]), 5000)
