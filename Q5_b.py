@@ -13,7 +13,7 @@ def MAP_descision(X):
         for p in p_s:
             prediction = []
             for w in row:
-                current = (sigma_2 * np.log((1 - p) / p)) / 2 * mu;
+                current = (sigma_2 * np.log((1 - p) / p)) / 2 * mu
                 if w >= current:
                     prediction.append(0)
                 else:
