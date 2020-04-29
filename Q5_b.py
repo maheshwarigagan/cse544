@@ -5,7 +5,7 @@ import pandas as pd
 def MAP_descision(w, h_0):
     sum_of_data = np.sum(w)
     current = (sigma_2 * np.log(h_0/(1 - h_0))) / (2 * mu)
-    if sum_of_data >= current:
+    if sum_of_data <= current:
         return 0
     else:
         return 1
